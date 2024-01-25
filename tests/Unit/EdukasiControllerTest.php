@@ -6,6 +6,7 @@ use Tests\TestCase;
 
 class EdukasiControllerTest extends TestCase
 {   
+    protected $id; 
     /** @test */
     public function testshow()
     {
@@ -47,6 +48,11 @@ class EdukasiControllerTest extends TestCase
         ]);
         // Assert the response status code
         $response->assertStatus(201);
+        $data = $response->json();
+
+        // Access the 'mahasiswa' array and then get the 'id'
+        $this->id = $data['edukasi']['id'];
+        return $this->id;
     }
     /** @test */
     public function testUpdateValidationRules1()
@@ -67,15 +73,18 @@ class EdukasiControllerTest extends TestCase
         $response->assertStatus(200);
     }
 
-    /** @test */
-    public function testUpdateFileUploadAndDatabaseInteraction()
+    /** 
+     * @test
+     * @depends testStoreFileUpload
+     */
+    public function testUpdateFileUploadAndDatabaseInteraction($id)
     {
 
         // Create a fake image file for testing
         $file = UploadedFile::fake()->image('testUpdate.jpg');
 
         // Create form data with file upload
-        $response = $this->json('PUT', 'api/edukasi/32',[
+        $response = $this->json('PUT', "api/edukasi/$id",[
             'judul' => 'Test Judul',
             'isi' => 'Test Isi',
             'foto' => $file,
@@ -83,10 +92,13 @@ class EdukasiControllerTest extends TestCase
         // Assert the response status code
         $response->assertStatus(200);
     }
-    /** @test */
-    public function testshowbyid()
+    /** 
+     * @test
+     * @depends testStoreFileUpload
+     */
+    public function testshowbyid($id)
     {
-        $response = $this->json('GET', 'api/edukasi/8',[
+        $response = $this->json('GET', "api/edukasi/$id",[
         ]);
         // Assert the response status code
         $response->assertStatus(200);
@@ -100,10 +112,13 @@ class EdukasiControllerTest extends TestCase
         $response->assertStatus(404);
     }
     
-    /** @test */
-    public function testDeleteData()
+    /** 
+     * @test
+     * @depends testStoreFileUpload
+     */
+    public function testDeleteData($id)
     {
-        $response = $this->json('DELETE', 'api/edukasi/31',[
+        $response = $this->json('DELETE', "api/edukasi/$id",[
         ]);
         // Assert the response status code
         $response->assertStatus(200);

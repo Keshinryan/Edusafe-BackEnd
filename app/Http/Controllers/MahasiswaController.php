@@ -93,7 +93,7 @@ class MahasiswaController extends Controller
         if ($mahasiswa) {
             if ($request->password) {
                 $user->update([
-                    'name_m' => $request->name_m,
+                    'name' => $request->name_m,
                     'password' => bcrypt($request->password),
                 ]);
             } else {

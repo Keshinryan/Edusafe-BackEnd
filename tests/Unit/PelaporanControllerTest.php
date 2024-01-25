@@ -4,7 +4,8 @@ namespace Tests\Unit;
 use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
 class PelaporanControllerTest extends TestCase
-{
+{   
+    protected $id;
     /**
      * A basic unit test example.
      */
@@ -54,6 +55,11 @@ class PelaporanControllerTest extends TestCase
         ]);
         // Assert the response status code
         $response->assertStatus(201);
+        $data = $response->json();
+
+        // Access the 'mahasiswa' array and then get the 'id'
+        $this->id = $data['pelaporan']['id'];
+        return $this->id;
     }
     public function testUpdateValidationRules()
     {
@@ -62,9 +68,13 @@ class PelaporanControllerTest extends TestCase
         $response->assertStatus(400);
     }
 
-    public function testUpdateFileUploadAndDatabaseInteraction()
+    /** 
+     * @test
+     * @depends testStoreValidationRules2
+     */
+    public function testUpdateFileUploadAndDatabaseInteraction($id)
     {
-        $response = $this->json('PUT', 'api/pelaporan/19',[]);
+        $response = $this->json('PUT', "api/pelaporan/$id",[]);
         // Assert the response status code
         $response->assertStatus(400);
     }

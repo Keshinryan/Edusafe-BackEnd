@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Validator;
 
 class MahasiswaController extends Controller
 {
+    /**
+     * Display a listing of the mahasiswa data.
+     */
     public function index()
     {
         $mahasiswa = mahasiswa::latest()->get();
@@ -19,7 +22,7 @@ class MahasiswaController extends Controller
         ], 200);
     }
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created mahasiswa data.
      */
     public function store(Request $request)
     {
@@ -61,7 +64,7 @@ class MahasiswaController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified mahasiswa data.
      */
     public function show($id)
     {
@@ -74,7 +77,7 @@ class MahasiswaController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified mahasiswa data.
      */
     public function update(Request $request, mahasiswa $mahasiswa)
     {
@@ -122,7 +125,7 @@ class MahasiswaController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified mahasiswa data.
      */
     public function destroy($id)
     {

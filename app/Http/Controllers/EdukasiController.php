@@ -11,7 +11,7 @@ Storage::disk('local')->makeDirectory('foto');
 class EdukasiController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the edukasi data.
      */
     public function index()
     {
@@ -23,7 +23,7 @@ class EdukasiController extends Controller
         ], 200);
     }
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created new edukasi data.
      */
     public function store(Request $request)
     {   
@@ -52,7 +52,7 @@ class EdukasiController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified edukasi data.
      */
     public function show($id)
     {
@@ -65,7 +65,7 @@ class EdukasiController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified edukasi data.
      */
     public function update(Request $request, edukasi $edukasi)
     {
@@ -102,11 +102,11 @@ class EdukasiController extends Controller
                 'message' => 'Edukasi Updated',
                 'data' => $edukasi,
             ], 200);
-        }
+        } 
     }
     
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified edukasi data.
      */
     public function destroy( $id)
     {

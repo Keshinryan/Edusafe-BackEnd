@@ -51,26 +51,26 @@ class PelaporanControllerTest extends TestCase
             'tempat' => 'TKP',
             'deskripsi' => 'Isi Deskripsi',
             'bukti' => $file,
-            'id_m'=>18,
+            'id_m'=>5,
         ]);
         // Assert the response status code
         $response->assertStatus(201);
         $data = $response->json();
 
         // Access the 'mahasiswa' array and then get the 'id'
-        $this->id = $data['pelaporan']['id'];
+        $this->id = $data['data']['id'];
         return $this->id;
     }
     public function testUpdateValidationRules()
     {
-        $response = $this->json('PUT', 'api/pelaporan/19',[]);
+        $response = $this->json('PUT', 'api/pelaporan/1',[]);
         // Assert the response status code
         $response->assertStatus(400);
     }
 
     /** 
      * @test
-     * @depends testStoreValidationRules2
+     * @depends  testStoreFileUpload
      */
     public function testUpdateFileUploadAndDatabaseInteraction($id)
     {

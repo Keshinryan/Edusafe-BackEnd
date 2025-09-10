@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
+    
+    /**
+     * Display a listing of the user data.
+     */
     public function index()
     {
         $User = User::latest()->first();
@@ -18,43 +22,43 @@ class UserController extends Controller
         ], 200);
     }
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created user data.
      */
 
-     public function store(Request $request)
-     {
-         $validator = Validator::make($request->all(), [
-             'name' => 'required',
-             'role' => 'required',
-             'password' => 'required',
-         ]);
-     
-         if ($validator->fails()) {
-             return response()->json(['errors' => $validator->errors()], 400);
-         }
-     
-         $user = User::create([
-             'name' => $request->name,
-             'role' => $request->role,
-             'password' => bcrypt($request->password), // Hash the password before storing
-         ]);
-     
-         if ($user) {
-             return response()->json([
-                 'success' => true,
-                 'message' => 'User Berhasil ditambahkan',
-                 'data' => $user
-             ], 201);
-         }
-     
-         return response()->json([
-             'success' => false,
-             'message' => 'User Gagal ditambahkan',
-         ], 409);
-     }
-     
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'role' => 'required',
+            'password' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 400);
+        }
+
+        $user = User::create([
+            'name' => $request->name,
+            'role' => $request->role,
+            'password' => bcrypt($request->password), // Hash the password before storing
+        ]);
+
+        if ($user) {
+            return response()->json([
+                'success' => true,
+                'message' => 'User Berhasil ditambahkan',
+                'data' => $user
+            ], 201);
+        }
+
+        return response()->json([
+            'success' => false,
+            'message' => 'User Gagal ditambahkan',
+        ], 409);
+    }
+
     /**
-     * Display the specified resource.
+     * Display the specified user data.
      */
     public function show($id)
     {
@@ -67,7 +71,7 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified user data.
      */
     public function update(Request $request, User $User)
     {
@@ -99,14 +103,14 @@ class UserController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified user data.
      */
     public function destroy($id)
     {
         $User = User::findOrfail($id);
         if ($User) {
             $User->delete();
-            $User=User::latest()->get();
+            $User = User::latest()->get();
             return response()->json([
                 'success' => true,
                 'message' => 'User Deleted',
@@ -118,4 +122,25 @@ class UserController extends Controller
             'message' => 'User Not Found',
         ], 404);
     }
+    public function add($a, $b)
+    {
+
+        if (is_array($a)) {
+            // Handle array addition
+            return array_sum($a);
+        } else {
+            // Handle integer addition
+            return $a + $b;
+
+        }
+    }
+    public function getRole() {
+        return 'user';
+    }
 }
+class Admin extends UserController {
+    public function getRole() {
+        return 'admin'; // override method parent
+    }
+}
+

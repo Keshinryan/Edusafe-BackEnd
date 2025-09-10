@@ -36,7 +36,6 @@ class MahasiswaControllerTest extends TestCase
         ]);
         $response->assertStatus(201);
         $data = $response->json();
-
         // Access the 'mahasiswa' array and then get the 'id'
         $this->id = $data['mahasiswa']['id'];
         return $this->id;
@@ -87,7 +86,7 @@ class MahasiswaControllerTest extends TestCase
     /** @test */
     public function testshowbyid2()
     {
-        $response = $this->json('GET', 'api/mahasiswa/7',[
+        $response = $this->json('GET', 'api/mahasiswa/1',[
         ]);
         // Assert the response status code
         $response->assertStatus(404);

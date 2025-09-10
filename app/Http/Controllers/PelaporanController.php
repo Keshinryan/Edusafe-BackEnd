@@ -13,7 +13,7 @@ Storage::disk('local')->makeDirectory('bukti');
 class PelaporanController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the pelaporan data.
      */
     public function index()
     {
@@ -27,7 +27,7 @@ class PelaporanController extends Controller
         ], 200);
     }
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created pelaporan data.
      */
     public function store(Request $request)
     {   
@@ -62,7 +62,7 @@ class PelaporanController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified pelaporan data.
      */
     public function show($id)
     {
@@ -75,7 +75,7 @@ class PelaporanController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified pelaporan status.
      */
     public function update(Request $request, pelaporan $pelaporan)
     {// Logging the request data for debugging purposes
@@ -113,7 +113,7 @@ class PelaporanController extends Controller
 
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified pelaporan data.
      */
     public function destroy($id)
     {

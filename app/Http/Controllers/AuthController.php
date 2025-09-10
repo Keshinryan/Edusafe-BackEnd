@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
+    /**
+     * Register a new user.
+     */
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -47,7 +50,9 @@ class AuthController extends Controller
             ], 201);
         }
     }
-
+    /**
+     * Login a user.
+     */
     public function login(Request $request)
     {   
         // Validate the user input

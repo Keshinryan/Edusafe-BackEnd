@@ -40,7 +40,8 @@ class AuthControllerTest extends TestCase
        /** @test */
        public function testLogin1()
        {
-           $response = $this->json('POST', 'api/login',[
+           $response = $this->json('POST', 'api/login',
+           [
            ]);
            // Assert the response status code
            $response->assertStatus(422);
@@ -48,7 +49,8 @@ class AuthControllerTest extends TestCase
         /** @test */
         public function testLogin2()
         {
-            $response = $this->json('POST', 'api/login',[
+            $response = $this->json('POST', 'api/login',
+            [
                 'name' => 'Jason',
                 'password' => '121',
             ]);

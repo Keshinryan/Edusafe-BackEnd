@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
 class KaprodiController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the kaprodi data.
      */
     public function index()
     { 
@@ -21,7 +21,7 @@ class KaprodiController extends Controller
         ], 200);
     }
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created  kaprodi data.
      */
     public function store(Request $request)
     {   
@@ -62,7 +62,7 @@ class KaprodiController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified kaprodi data.
      */
     public function show($id)
     {
@@ -75,7 +75,7 @@ class KaprodiController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified kaprodi data.
      */
     public function update(Request $request, kaprodi $kaprodi)
     {   
@@ -121,7 +121,7 @@ class KaprodiController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified kaprodi data.
      */
     public function destroy($id)
     {   

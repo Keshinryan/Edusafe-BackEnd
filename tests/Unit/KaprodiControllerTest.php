@@ -34,7 +34,6 @@ class KaprodiControllerTest extends TestCase
         ]);
         $response->assertStatus(201);
         $data = $response->json();
-
         // Access the 'mahasiswa' array and then get the 'id'
         $this->id = $data['kaprodi']['id'];
         return $this->id;

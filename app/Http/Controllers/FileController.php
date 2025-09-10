@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 
 class FileController extends Controller
 {
+    /**
+     * Display the specified file from public storage.
+     */
     public function show($filename, $name)
     {
         if ($name == "bukti") {
@@ -31,6 +34,9 @@ class FileController extends Controller
         }
     }
 
+    /**
+     * Update the specified file in public storage.
+     */
     public function update(Request $request, $param)
     {
         $edukasi = edukasi::findOrFail($param);

@@ -3,8 +3,6 @@
 namespace Tests\Unit;
 use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
-
-
 class FileControllerTest extends TestCase
 {
     /**
@@ -37,8 +35,6 @@ class FileControllerTest extends TestCase
         // Assert the response status code
         $response->assertStatus(404);
     }
-
-    
     /** @test */
     public function testshow4()
     {
@@ -55,22 +51,19 @@ class FileControllerTest extends TestCase
         // Assert the response status code
         $response->assertStatus(404);
     }
-   
-   /** @test */
+    /** 
+     * @test
+     */
     public function testUpdate2(){
         // Create a fake image file for testing
         $file = UploadedFile::fake()->image('new_image.jpg');
-
         // Assuming 'api/edukasi/{param}' is the correct endpoint for updating
-        $param = 45; // Replace with the actual ID of the edukasi you want to update
-
+        $param = 16; // Replace with the actual ID of the edukasi you want to update
         // Make a request to the update endpoint with the new image file
         $response = $this->json('POST', "api/file/{$param}", [
             'foto' => $file,
         ]);
-
         // Assert the response status code
         $response->assertStatus(200);
-
     }
 }
